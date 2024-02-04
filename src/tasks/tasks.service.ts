@@ -29,7 +29,13 @@ export class TasksService {
       status: TaskStatus.PENDING,
     };
     this.tasks.push(task);
-    return task;
+
+    const response = {
+      status: 'ok',
+      data: [task],
+    };
+
+    return response;
   }
   deleteTasks(id: string) {
     this.tasks = this.tasks.filter((task) => task.id !== id);
