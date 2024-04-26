@@ -4,4 +4,5 @@ export class Fruit {
   price:       number;
   description: string;
   category:    string;
+  img:         string;
 }

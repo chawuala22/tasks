@@ -20,7 +20,10 @@ export class CreateTaskDto {
   price: number;
 
   @IsString()
-  category?: string;
+  category: string;
+
+  @IsString()
+  img: string;
 }
 
 export class UpdateTaskDTto {
@@ -39,4 +42,8 @@ export class UpdateTaskDTto {
   @IsString()
   @IsOptional()
   category?: string;
+
+  @IsString()
+  @IsOptional()
+  img?: string;
 }

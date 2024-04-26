@@ -37,6 +37,12 @@ $ npm install
 api/docs#/
 ```
 
+## Endpoints
+```bash
+#GET POST PATCH  DELETE
+https://tasks-pearl.vercel.app/fruit
+```
+
 ## Running the app
 
 ```bash

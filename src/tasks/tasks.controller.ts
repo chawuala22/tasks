@@ -26,7 +26,7 @@ export class TasksController {
 
   @Post()
   createTask(@Body() newTask: CreateTaskDto) {
-    return this._tasksService.createTasks(newTask.title, newTask.description, newTask.price, newTask.category);
+    return this._tasksService.createTasks(newTask.title, newTask.description, newTask.price, newTask.category, newTask.img);
   }
 
   @Delete(':id')

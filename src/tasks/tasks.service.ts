@@ -11,6 +11,7 @@ export class TasksService {
       "title": "Banana",
       "price": 3,
       "description": "Fresh banana",
+      "img": "https://familia.freshcatarina.com/uploads/PLATANO.png",
       "category": "fruit"
     },
     {
@@ -18,6 +19,7 @@ export class TasksService {
       "title": "Passion fruit",
       "price": 10,
       "description": "Fresh",
+      "img": "https://caribbeanexotics.com.co/wp-content/uploads/2021/03/granadilla-producto-caribbean-exotics-1.png",
       "category": "fruit"
     },
     {
@@ -25,6 +27,7 @@ export class TasksService {
       "title": "Apple",
       "price": 2,
       "description": "Fresh apple",
+      "img": "https://www.frutality.es/wp-content/uploads/manzana-royal.png",
       "category": "fruit"
     },
     {
@@ -32,6 +35,7 @@ export class TasksService {
       "title": "Kiwi",
       "price": 7,
       "description": "Fresh kiwi",
+      "img": "https://tastybitesec.com/wp-content/uploads/2021/03/kiwi-fruit.png",
       "category": "fruit"
     },
     {
@@ -39,6 +43,7 @@ export class TasksService {
       "title": "Blackberry",
       "price": 8,
       "description": "Fresh blackberry",
+      "img": "https://i.pinimg.com/originals/a3/37/94/a337949e15bbe4c97a3eec8c542d7ca9.png",
       "category": "fruit"
     },
   ];
@@ -54,12 +59,13 @@ export class TasksService {
   getTaskById(taskId: string): Fruit {
     return this.tasks.find((task) => task.id === taskId);
   }
-  createTasks(title: string, description: string, price: number, category: string) {
+  createTasks(title: string, description: string, price: number, category: string, img: string) {
     const task = {
       id: v4(),
       title,
       price,
       description,
+      img,
       category
     };
     this.tasks.push(task);
