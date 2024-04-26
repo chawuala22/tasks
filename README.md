@@ -32,6 +32,11 @@
 $ npm install
 ```
 
+## Documentation
+```bash
+api/docs#/
+```
+
 ## Running the app
 
 ```bash

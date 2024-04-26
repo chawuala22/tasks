@@ -10,9 +10,9 @@ import {
 import { TasksService } from './tasks.service';
 import { CreateTaskDto, UpdateTaskDTto } from './dto/task.dto';
 
-@Controller('tasks')
+@Controller('fruit')
 export class TasksController {
-  constructor(private _tasksService: TasksService) {}
+  constructor(private _tasksService: TasksService) { }
 
   @Get()
   getAllTasks() {
@@ -20,13 +20,13 @@ export class TasksController {
   }
 
   @Get(':id')
-  getTaskById(@Param('id') id: string){
+  getTaskById(@Param('id') id: string) {
     return this._tasksService.getTaskById(id);
   }
 
   @Post()
   createTask(@Body() newTask: CreateTaskDto) {
-    return this._tasksService.createTasks(newTask.title, newTask.description);
+    return this._tasksService.createTasks(newTask.title, newTask.description, newTask.price, newTask.category);
   }
 
   @Delete(':id')

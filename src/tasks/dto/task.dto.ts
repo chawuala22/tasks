@@ -1,11 +1,11 @@
 import {
-  IsIn,
   IsNotEmpty,
+  IsNumber,
   IsOptional,
   IsString,
   MinLength,
 } from 'class-validator';
-import { TaskStatus } from '../task.entity';
+
 
 export class CreateTaskDto {
   @IsString()
@@ -15,6 +15,12 @@ export class CreateTaskDto {
 
   @IsString()
   description: string;
+
+  @IsNumber()
+  price: number;
+
+  @IsString()
+  category?: string;
 }
 
 export class UpdateTaskDTto {
@@ -26,8 +32,11 @@ export class UpdateTaskDTto {
   @IsOptional()
   description?: string;
 
+  @IsNumber()
+  @IsOptional()
+  price?: number;
+
   @IsString()
   @IsOptional()
-  @IsIn([TaskStatus.DONE, TaskStatus.PENDING, TaskStatus.IN_PROGRESS])
-  status?: TaskStatus;
+  category?: string;
 }
