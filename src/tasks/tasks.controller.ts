@@ -8,11 +8,11 @@ import {
   Patch,
 } from '@nestjs/common';
 import { TasksService } from './tasks.service';
-import { CreateTaskDto, UpdateTaskDTto } from './dto/task.dto';
+import { CreateTaskDto, UpdateTaskDto } from './dto/task.dto';
 
-@Controller('fruit')
+@Controller('task')
 export class TasksController {
-  constructor(private _tasksService: TasksService) { }
+  constructor(private _tasksService: TasksService) {}
 
   @Get()
   getAllTasks() {
@@ -26,7 +26,12 @@ export class TasksController {
 
   @Post()
   createTask(@Body() newTask: CreateTaskDto) {
-    return this._tasksService.createTasks(newTask.title, newTask.description, newTask.price, newTask.category, newTask.img);
+    return this._tasksService.createTasks(
+      newTask.name_task,
+      newTask.deadline,
+      newTask.state,
+      newTask.associated_persons,
+    );
   }
 
   @Delete(':id')
@@ -35,7 +40,7 @@ export class TasksController {
   }
 
   @Patch(':id')
-  updateTask(@Param('id') id: string, @Body() updateFields: UpdateTaskDTto) {
+  updateTask(@Param('id') id: string, @Body() updateFields: UpdateTaskDto) {
     return this._tasksService.updateTasks(id, updateFields);
   }
 }

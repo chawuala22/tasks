@@ -1,51 +1,39 @@
 import { Injectable } from '@nestjs/common';
 import { v4 } from 'uuid';
-import { UpdateTaskDTto } from './dto/task.dto';
-import { Fruit } from './task.entity';
+import { UpdateTaskDto } from './dto/task.dto';
+import { Task } from './task.entity';
 
 @Injectable()
 export class TasksService {
-  private tasks: Fruit[] = [
+
+  private tasks: Task[] = [
     {
       "id": "1",
-      "title": "Banana",
-      "price": 3,
-      "description": "Fresh banana",
-      "img": "https://familia.freshcatarina.com/uploads/PLATANO.png",
-      "category": "fruit"
-    },
-    {
-      "id": "2",
-      "title": "Passion fruit",
-      "price": 10,
-      "description": "Fresh",
-      "img": "https://caribbeanexotics.com.co/wp-content/uploads/2021/03/granadilla-producto-caribbean-exotics-1.png",
-      "category": "fruit"
-    },
-    {
-      "id": "3",
-      "title": "Apple",
-      "price": 2,
-      "description": "Fresh apple",
-      "img": "https://www.frutality.es/wp-content/uploads/manzana-royal.png",
-      "category": "fruit"
-    },
-    {
-      "id": "4",
-      "title": "Kiwi",
-      "price": 7,
-      "description": "Fresh kiwi",
-      "img": "https://tastybitesec.com/wp-content/uploads/2021/03/kiwi-fruit.png",
-      "category": "fruit"
-    },
-    {
-      "id": "5",
-      "title": "Blackberry",
-      "price": 8,
-      "description": "Fresh blackberry",
-      "img": "https://i.pinimg.com/originals/a3/37/94/a337949e15bbe4c97a3eec8c542d7ca9.png",
-      "category": "fruit"
-    },
+      "name_task": "Desarrollo Frontend",
+      "deadline": "15/10/2024",
+      "state": false,
+      "associated_persons": [
+        {
+          "full_name": "Laura Gómez",
+          "age": 27,
+          "skills": [
+            "angular",
+            "css",
+            "nginx"
+          ]
+        },
+        {
+          "full_name": "Carlos Pérez",
+          "age": 32,
+          "skills": [
+            "typescript",
+            "nodejs",
+            "firebase"
+          ]
+        }
+      ]
+    }
+    
   ];
 
   getAllTasks() {
@@ -56,17 +44,17 @@ export class TasksService {
     return response;
   }
 
-  getTaskById(taskId: string): Fruit {
+  getTaskById(taskId: string): Task {
     return this.tasks.find((task) => task.id === taskId);
   }
-  createTasks(title: string, description: string, price: number, category: string, img: string) {
+
+  createTasks(name_task: string, deadline: string, state: boolean, associated_persons: any[]) {
     const task = {
       id: v4(),
-      title,
-      price,
-      description,
-      img,
-      category
+      name_task,
+      deadline,
+      state,
+      associated_persons
     };
     this.tasks.push(task);
     return task;
@@ -75,7 +63,7 @@ export class TasksService {
     this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 
-  updateTasks(id: string, updateFields: UpdateTaskDTto): Fruit {
+  updateTasks(id: string, updateFields: UpdateTaskDto): Task {
     const task = this.getTaskById(id);
     const newtask = Object.assign(task, updateFields);
     this.tasks = this.tasks.map((task) => (task.id === id ? newtask : task));
