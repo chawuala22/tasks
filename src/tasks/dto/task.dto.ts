@@ -1,4 +1,16 @@
-import { IsString, IsBoolean, IsDateString, ValidateNested, IsArray, IsInt, Min, ArrayNotEmpty, IsOptional, IsNotEmpty, MinLength } from 'class-validator';
+import {
+  IsString,
+  IsBoolean,
+  IsDateString,
+  ValidateNested,
+  IsArray,
+  IsInt,
+  Min,
+  ArrayNotEmpty,
+  IsOptional,
+  IsNotEmpty,
+  MinLength,
+} from 'class-validator';
 import { Type } from 'class-transformer';
 
 class AssociatedPersonDto {
@@ -33,6 +45,9 @@ export class TaskBaseDto {
 }
 
 export class CreateTaskDto extends TaskBaseDto {
+  @IsOptional()
+  @IsString()
+  date_completed?: string;
 }
 
 class UpdateAssociatedPersonDto {
@@ -62,8 +77,12 @@ export class UpdateTaskDto {
   name_task?: string;
 
   @IsOptional()
-  @IsDateString()
+  @IsString()
   deadline?: string;
+
+  @IsOptional()
+  @IsString()
+  date_completed?: string;
 
   @IsOptional()
   @IsBoolean()

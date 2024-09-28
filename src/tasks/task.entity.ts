@@ -2,6 +2,7 @@ export class Task {
   id:                 string;
   name_task:          string;
   deadline:           string;
+  date_completed?:     string;
   state:              boolean;
   associated_persons: AssociatedPerson[];
 }

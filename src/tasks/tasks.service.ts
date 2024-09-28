@@ -5,35 +5,25 @@ import { Task } from './task.entity';
 
 @Injectable()
 export class TasksService {
-
   private tasks: Task[] = [
     {
-      "id": "1",
-      "name_task": "Desarrollo Frontend",
-      "deadline": "15/10/2024",
-      "state": false,
-      "associated_persons": [
+      id: '1',
+      name_task: 'Desarrollo Frontend',
+      deadline: '15/10/2024',
+      state: false,
+      associated_persons: [
         {
-          "full_name": "Laura Gómez",
-          "age": 27,
-          "skills": [
-            "angular",
-            "css",
-            "nginx"
-          ]
+          full_name: 'Laura Gómez',
+          age: 27,
+          skills: ['angular', 'css', 'nginx'],
         },
         {
-          "full_name": "Carlos Pérez",
-          "age": 32,
-          "skills": [
-            "typescript",
-            "nodejs",
-            "firebase"
-          ]
-        }
-      ]
-    }
-    
+          full_name: 'Carlos Pérez',
+          age: 32,
+          skills: ['typescript', 'nodejs', 'firebase'],
+        },
+      ],
+    },
   ];
 
   getAllTasks() {
@@ -48,13 +38,20 @@ export class TasksService {
     return this.tasks.find((task) => task.id === taskId);
   }
 
-  createTasks(name_task: string, deadline: string, state: boolean, associated_persons: any[]) {
+  createTasks(
+    name_task: string,
+    deadline: string,
+    date_completed: string,
+    state: boolean,
+    associated_persons: any[],
+  ) {
     const task = {
       id: v4(),
       name_task,
       deadline,
+      date_completed,
       state,
-      associated_persons
+      associated_persons,
     };
     this.tasks.push(task);
     return task;

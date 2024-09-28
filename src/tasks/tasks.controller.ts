@@ -30,6 +30,7 @@ export class TasksController {
     return this._tasksService.createTasks(
       newTask.name_task,
       newTask.deadline,
+      newTask.date_completed,
       newTask.state,
       newTask.associated_persons,
     );
