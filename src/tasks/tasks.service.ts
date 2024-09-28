@@ -69,13 +69,7 @@ export class TasksService {
       category
     };
     this.tasks.push(task);
-
-    const response = {
-      status: 'ok',
-      data: [task],
-    };
-
-    return response;
+    return task;
   }
   deleteTasks(id: string) {
     this.tasks = this.tasks.filter((task) => task.id !== id);
