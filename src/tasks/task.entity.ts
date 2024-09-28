@@ -1,8 +1,15 @@
-export class Fruit {
-  id:          string;
-  title:       string;
-  price:       number;
-  description: string;
-  category:    string;
-  img:         string;
+export class Task {
+  id:                 string;
+  name_task:          string;
+  deadline:           string;
+  state:              boolean;
+  associated_persons: AssociatedPerson[];
 }
+
+export interface AssociatedPerson {
+  full_name: string;
+  age:       number;
+  skills:    string[];
+}
+
+

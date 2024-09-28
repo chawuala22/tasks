@@ -1,49 +1,77 @@
-import {
-  IsNotEmpty,
-  IsNumber,
-  IsOptional,
-  IsString,
-  MinLength,
-} from 'class-validator';
+import { IsString, IsBoolean, IsDateString, ValidateNested, IsArray, IsInt, Min, ArrayNotEmpty, IsOptional, IsNotEmpty, MinLength } from 'class-validator';
+import { Type } from 'class-transformer';
 
-
-export class CreateTaskDto {
+class AssociatedPersonDto {
   @IsString()
-  @IsNotEmpty()
-  @MinLength(3)
-  title: string;
+  @MinLength(5)
+  full_name: string;
 
-  @IsString()
-  description: string;
+  @IsInt()
+  @Min(18)
+  age: number;
 
-  @IsNumber()
-  price: number;
-
-  @IsString()
-  category: string;
-
-  @IsString()
-  img: string;
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsString({ each: true })
+  skills: string[];
 }
 
-export class UpdateTaskDTto {
+export class TaskBaseDto {
   @IsString()
-  @IsOptional()
-  title?: string;
+  name_task: string;
 
   @IsString()
-  @IsOptional()
-  description?: string;
+  deadline: string;
 
-  @IsNumber()
-  @IsOptional()
-  price?: number;
+  @IsBoolean()
+  state: boolean;
 
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => AssociatedPersonDto)
+  associated_persons: AssociatedPersonDto[];
+}
+
+export class CreateTaskDto extends TaskBaseDto {
+}
+
+class UpdateAssociatedPersonDto {
+  @IsOptional()
   @IsString()
-  @IsOptional()
-  category?: string;
+  full_name?: string;
 
-  @IsString()
   @IsOptional()
-  img?: string;
+  @IsInt()
+  @Min(0)
+  age?: number;
+
+  @IsOptional()
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsString({ each: true })
+  skills?: string[];
+}
+
+export class UpdateTaskDto {
+  @IsOptional()
+  @IsString()
+  id?: string;
+
+  @IsOptional()
+  @IsString()
+  name_task?: string;
+
+  @IsOptional()
+  @IsDateString()
+  deadline?: string;
+
+  @IsOptional()
+  @IsBoolean()
+  state?: boolean;
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => UpdateAssociatedPersonDto)
+  associated_persons?: UpdateAssociatedPersonDto[];
 }
